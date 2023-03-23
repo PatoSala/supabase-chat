@@ -19,16 +19,19 @@ function Chat() {
     const [messages, setMessages] = useState([]);
 
     async function getMessages() {
-        const { data, error } = await supabase.from("messages").select();
+        const { data } = await supabase.from("messages").select();
         console.log('DATA', data);
         setMessages(data.reverse());
     }
 
     async function sendMessage(message) {
         const { error } = await supabase.from('messages').insert({ owner: session.username, body: message });
+        if (error) {
+            console.log(error);
+        }
     }
 
-    const channel = supabase
+    supabase
         .channel('messages_channel')
         .on(
             'postgres_changes',

@@ -1,5 +1,5 @@
 import './App.css';
-import { createContext, useContext, useState } from 'react';
+import { createContext, useState } from 'react';
 
 // Component
 import Wrapper from './Components/Wrapper';
