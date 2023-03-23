@@ -13,7 +13,7 @@ function Messages({ messages }) {
                 <p style={{ color: 'white' }}>Empty</p>
             </div>
         ) : (
-            <div className="messages-container" style={{ dispay: 'flex', flexDirection: 'column', flex: 1 }}>
+            <div className="messages-container" style={{ dispay: 'flex', flexDirection: 'column-reverse', flex: 1 }}>
                 {
                     messages.map(msg => (
                         <p style={{ color: 'white', width: 'fit-content', alignSelf: msg.owner === session.username ? 'flex-end' : null}} key={msg.id}>{msg.body}</p>

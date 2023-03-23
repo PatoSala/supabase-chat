@@ -21,7 +21,7 @@ function Chat() {
     async function getMessages() {
         const { data, error } = await supabase.from("messages").select();
         console.log('DATA', data);
-        setMessages(data);
+        setMessages(data.reverse());
     }
 
     async function sendMessage(message) {
