@@ -12,14 +12,14 @@ function Login() {
     }
 
     const handleSubmit = (e) => {
-        console.log(user.updateContext(value));
+        user.updateContext(value);
     }
 
     return (
         <div className="login-wrapper" style={{ margin: 'auto'}}>
             <input type="text" className="username-input" value={value} placeholder="Enter a username" onChange={handleOnChange}></input>
             <br/>
-            <button onClick={handleSubmit}>Login</button>
+            <button onClick={handleSubmit}>Sign In</button>
         </div>
     )
 }

@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.messages-container {
+  display: flex;
+  padding: 0px 20px;
+  overflow-y: scroll;
+}

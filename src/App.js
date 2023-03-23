@@ -8,9 +8,7 @@ export const UserContext = createContext();
 
 function App() {
 
-
   const updateContext = (username) => {
-    console.log(username);
     setUserContext({
       username: username,
       updateContext
