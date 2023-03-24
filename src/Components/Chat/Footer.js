@@ -13,8 +13,14 @@ function Footer({ sendMessage }) {
     }
 
     const handleSubmit = (e) => {
-        sendMessage(session.username, value);
-        setValue('');
+        if (value.length > 0) {
+            if (!value.replace(/\s/g, '').length) {
+                console.log('string only contains whitespace (ie. spaces, tabs or line breaks)');
+            } else {
+                sendMessage(session.username, value);
+                setValue('');
+            }
+        }
     }
 
     return (
@@ -25,7 +31,7 @@ function Footer({ sendMessage }) {
                 backgroundColor: '#292929',
             }} value={value} onChange={handleOnChange}></input>
             
-            <button className="button" style={{ margin: '0px 10px'}} onClick={handleSubmit}>Send</button>
+            <button className="button" style={{marginLeft: 10}} onClick={handleSubmit}>Send</button>
 
         </div>
     )

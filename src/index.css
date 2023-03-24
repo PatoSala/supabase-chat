@@ -1,13 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Almarai&display=swap');
+
 html {
   background: #1c1c1c;
 }
 
 body {
   margin: 0;
-  font-family: circular,Helvetica Neue,Helvetica,Arial,sans-serif;
+  font-family: Almarai, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #1c1c1c;
+}
+
+button {
+  font-family: Almarai, sans-serif;
 }
 
 code {
@@ -23,6 +29,7 @@ code {
 
 input {
   font-size: 14px;
+  font-family: Almarai, sans-serif;
 }
 
 input:focus {

@@ -6,7 +6,7 @@ function Header({ sendMessage }) {
     const session = useContext(UserContext);
 
     const handleSignOut = () => {
-        sendMessage('system', session.username + " left")
+        sendMessage('system', session.username + " left");
         session.updateContext(undefined,)
     }
 
@@ -25,7 +25,17 @@ function Header({ sendMessage }) {
             borderColor: '#282828',
             borderStyle: 'solid',
         }}>
-            <h2 style={{ margin: '0px 10px', color: 'white', fontSize: '1.2rem', lineHeight: '2.25rem'}}>{session.username}</h2>
+            <div className="left-header-content" style={{ display: 'flex', alignItems: 'center', margin: '0 10px'}}>
+                <div className="profile-pic" style={{
+                    width: 40,
+                    height: 40,
+                    backgroundColor: 'gray',
+                    borderRadius: 100
+                }}></div>
+
+                <h2 style={{ margin: '0px 10px', color: 'white', fontSize: '1.2rem', lineHeight: '2.25rem'}}>{session.username} (You)</h2>
+            </div>
+
             <button className="button" style={{ margin: '0px 10px'}} onClick={handleSignOut}>Sign Out</button>
         </div>
     )
