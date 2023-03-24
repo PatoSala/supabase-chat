@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/react-gh-pages/static/css/main.33be983d.css",
-    "main.js": "/react-gh-pages/static/js/main.664f157c.js",
-    "static/js/787.a1b30d3e.chunk.js": "/react-gh-pages/static/js/787.a1b30d3e.chunk.js",
-    "index.html": "/react-gh-pages/index.html",
-    "main.33be983d.css.map": "/react-gh-pages/static/css/main.33be983d.css.map",
-    "main.664f157c.js.map": "/react-gh-pages/static/js/main.664f157c.js.map",
-    "787.a1b30d3e.chunk.js.map": "/react-gh-pages/static/js/787.a1b30d3e.chunk.js.map"
+    "main.css": "/supabase-chat/static/css/main.33be983d.css",
+    "main.js": "/supabase-chat/static/js/main.db7b421b.js",
+    "static/js/787.a1b30d3e.chunk.js": "/supabase-chat/static/js/787.a1b30d3e.chunk.js",
+    "index.html": "/supabase-chat/index.html",
+    "main.33be983d.css.map": "/supabase-chat/static/css/main.33be983d.css.map",
+    "main.db7b421b.js.map": "/supabase-chat/static/js/main.db7b421b.js.map",
+    "787.a1b30d3e.chunk.js.map": "/supabase-chat/static/js/787.a1b30d3e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.33be983d.css",
-    "static/js/main.664f157c.js"
+    "static/js/main.db7b421b.js"
   ]
 }
