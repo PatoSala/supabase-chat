@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../App";
+import "./Footer.css";
 
 function Footer({ sendMessage }) {
 
@@ -12,16 +13,19 @@ function Footer({ sendMessage }) {
     }
 
     const handleSubmit = (e) => {
-        sendMessage(value);
+        sendMessage(session.username, value);
         setValue('');
     }
 
     return (
-        <div className="footer" style={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between', height: 60}}>
+        <div className="footer">
 
-            <input type="text" placeholder="Write something..." style={{ width: '100%'}} value={value} onChange={handleOnChange}></input>
+            <input className="footer-input" type="text" placeholder="Write something..." style={{
+                width: '100%',
+                backgroundColor: '#292929',
+            }} value={value} onChange={handleOnChange}></input>
             
-            <button style={{ margin: '0px 10px'}} onClick={handleSubmit}>Send</button>
+            <button className="button" style={{ margin: '0px 10px'}} onClick={handleSubmit}>Send</button>
 
         </div>
     )

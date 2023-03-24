@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../App";
+import "./Login.css";
 
 function Login() {
 
     const user = useContext(UserContext);
     
-    const [value, setValue] = useState('')
+    const [value, setValue] = useState('');
 
     const handleOnChange = (e) => {
         setValue(e.target.value);
@@ -17,9 +18,10 @@ function Login() {
 
     return (
         <div className="login-wrapper" style={{ margin: 'auto'}}>
+            <h1 style={{ color: 'white', position: 'relative', bottom: 40}}>Supachat</h1>
             <input type="text" className="username-input" value={value} placeholder="Enter a username" onChange={handleOnChange}></input>
             <br/>
-            <button onClick={handleSubmit}>Sign In</button>
+            <button className="button" style={{ width: '100%', marginTop: 20}} onClick={handleSubmit}>Sign In</button>
         </div>
     )
 }

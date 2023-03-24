@@ -1,4 +1,5 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
+import "./Chat.css";
 
 // Context
 import { UserContext } from "../../App";
@@ -14,6 +15,8 @@ const supabase = createClient("https://jhdzfvickkuntlbimgls.supabase.co", "eyJhb
 
 function Chat() {
 
+    const isMounted = useRef(false);
+
     const session = useContext(UserContext);
 
     const [messages, setMessages] = useState([]);
@@ -24,8 +27,8 @@ function Chat() {
         setMessages(data.reverse());
     }
 
-    async function sendMessage(message) {
-        const { error } = await supabase.from('messages').insert({ owner: session.username, body: message });
+    async function sendMessage(owner, message) {
+        const { error } = await supabase.from('messages').insert({ owner: owner, body: message });
         if (error) {
             console.log(error);
         }
@@ -48,12 +51,17 @@ function Chat() {
         .subscribe();
 
     useEffect(() => {
-        getMessages();
+        if (isMounted.current) {
+            getMessages();
+            sendMessage('system', session.username + ' joined');
+        } else {
+            isMounted.current = true;
+        }
     }, []);
 
     return (
-        <div className="chat-wrapper" style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
-            <Header/>
+        <div className="chat-wrapper">
+            <Header sendMessage={sendMessage}/>
             <Messages messages={messages}/>
             <Footer sendMessage={sendMessage}/>
         </div>

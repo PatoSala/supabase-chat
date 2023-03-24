@@ -1,0 +1,40 @@
+.footer {
+    display: flex;
+    position: fixed;
+    max-width: 59.9rem;
+    bottom: 0;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 10px 10px;
+    border-top: 1px solid #3e3e3e;
+    background-color: #1c1c1c;
+}
+
+.footer-input {
+    width: 100%;
+    background-color: rgb(41, 41, 41);
+    border: 1px solid #3e3e3e;
+    color: #ededed;
+    height: 38px;
+    padding: 8px 16px;
+    box-sizing: border-box;
+    border-radius: .375rem;
+}
+
+.footer-input:focus {
+    outline: none;
+    border-color: #484848;
+}
+
+.button {
+    background-color: #2b825b;
+    border: 1px solid #40bf86;
+    color: #fff;
+    padding: 8px 16px;
+    font-weight: bold;
+    font-family: circular, Helvetica Neue, Helvetica, Arial, sans-serif;
+    border-radius: .375rem;
+    box-sizing: border-box;
+}

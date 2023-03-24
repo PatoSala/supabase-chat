@@ -1,0 +1,13 @@
+.chat-wrapper {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    max-width: 60rem;
+    margin: 0 auto;
+    border-width: 0px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-style: solid;
+    border-color: #282828;
+    box-sizing: border-box;
+}

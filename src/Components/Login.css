@@ -1,0 +1,16 @@
+.login-wrapper {
+    max-width: 60rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.username-input {
+    width: 100%;
+    background-color: rgb(41, 41, 41);
+    border: 1px solid #3e3e3e;
+    color: #ededed;
+    height: 38px;
+    padding: 8px 16px;
+    box-sizing: border-box;
+    border-radius: .375rem;
+}
