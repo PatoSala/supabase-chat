@@ -1,11 +1,9 @@
 .login-wrapper {
     max-width: 60rem;
-    align-items: center;
-    justify-content: center;
 }
 
 .username-input {
-    width: 100%;
+    width: 400px;
     background-color: rgb(41, 41, 41);
     border: 1px solid #3e3e3e;
     color: #ededed;
@@ -13,4 +11,10 @@
     padding: 8px 16px;
     box-sizing: border-box;
     border-radius: .375rem;
+}
+
+@media screen and (max-width: 768px) {
+    .username-input {
+        width: 300px
+    }
 }

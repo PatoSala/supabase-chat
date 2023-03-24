@@ -13,7 +13,7 @@ function Messages({ messages }) {
                 <p style={{ color: 'white' }}>Empty</p>
             </div>
         ) : (
-            <div className="messages-container" style={{ dispay: 'flex', flexDirection: 'column-reverse', flex: 1, paddingBottom: 60 }}>
+            <div className="messages-container" style={{ dispay: 'flex', flexDirection: 'column-reverse', flex: 1, paddingBottom: 60, paddingTop: 60 }}>
                 {
                     messages.map(msg => (
                         <div className="msg-bubble" style={{

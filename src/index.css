@@ -21,6 +21,10 @@ code {
   overflow-y: scroll;
 }
 
+input {
+  font-size: 14px;
+}
+
 input:focus {
   outline: none;
 }
