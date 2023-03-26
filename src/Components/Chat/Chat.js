@@ -22,13 +22,13 @@ function Chat() {
     const [messages, setMessages] = useState([]);
 
     async function getMessages() {
-        const { data } = await supabase.from("messages").select();
-        console.log('DATA', data);
+        const { data } = await supabase.from("messages").select().order('created_at', { ascending: true });
         setMessages(data.reverse());
     }
 
     async function sendMessage(owner, message) {
         const { error } = await supabase.from('messages').insert({ owner: owner, body: message });
+        getMessages();
         if (error) {
             console.log(error);
         }
@@ -44,7 +44,6 @@ function Chat() {
                 table: 'messages'
             },
             (payload) => {
-                console.log(payload);
                 getMessages();
             }
         )
@@ -53,11 +52,19 @@ function Chat() {
     useEffect(() => {
         if (isMounted.current) {
             getMessages();
-            sendMessage('system', session.username + ' joined');
+            sendMessage('system', session.user.name + ' joined');
         } else {
             isMounted.current = true;
         }
     }, []);
+
+    /* const channel = supabase.channel('test');
+
+    channel
+    .on('presence', { event: 'join' }, ({ key, newPresences }) => {
+        console.log(key, newPresences)
+    })
+    .subscribe() */
 
     return (
         <div className="chat-wrapper">

@@ -23,7 +23,6 @@ code {
 
 .messages-container {
   display: flex;
-  padding: 0px 20px;
   overflow-y: scroll;
 }
 

@@ -9,11 +9,11 @@ import Chat from "./Chat/Chat";
 
 function Wrapper() {
 
-    const user = useContext(UserContext);
+    const session = useContext(UserContext);
 
     return (
         <>
-            { user.username === undefined ? <Login/> : <Chat/> }
+            { session.user === undefined ? <Login/> : <Chat/> }
         </>
     )
 }

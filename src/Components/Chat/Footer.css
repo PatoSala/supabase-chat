@@ -19,7 +19,7 @@
     color: #ededed;
     padding: 8px 16px;
     box-sizing: border-box;
-    border-radius: .375rem;
+    border-radius: 2rem;
 }
 
 .footer-input:focus {
@@ -34,6 +34,6 @@
     padding: 8px 16px;
     font-weight: bold;
     font-family: circular, Helvetica Neue, Helvetica, Arial, sans-serif;
-    border-radius: .375rem;
+    border-radius: 2rem;
     box-sizing: border-box;
 }

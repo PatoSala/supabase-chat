@@ -8,15 +8,15 @@ export const UserContext = createContext();
 
 function App() {
 
-  const updateContext = (username) => {
+  const updateContext = (user) => {
     setUserContext({
-      username: username,
+      user,
       updateContext
     });
   }
 
   const [userContext, setUserContext] = useState({
-    username: undefined,
+    user: undefined,
     updateContext
   });
 
