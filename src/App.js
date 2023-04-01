@@ -8,6 +8,9 @@ export const UserContext = createContext();
 
 function App() {
 
+  // listen for changes on user's table
+  // if current user changes, update current user
+
   const updateContext = (user) => {
     setUserContext({
       user,

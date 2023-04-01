@@ -18,7 +18,7 @@ function Footer({ sendMessage }) {
                 if (!value.replace(/\s/g, '').length) {
                     console.log('string only contains whitespace (ie. spaces, tabs or line breaks)');
                 } else {
-                    sendMessage(session.user, value);
+                    sendMessage(session.user.user_id, value);
                     setValue('');
                 }
             }
@@ -31,7 +31,7 @@ function Footer({ sendMessage }) {
             if (!value.replace(/\s/g, '').length) {
                 console.log('string only contains whitespace (ie. spaces, tabs or line breaks)');
             } else {
-                sendMessage(session.user, value);
+                sendMessage(session.user.user_id, value);
                 setValue('');
             }
         }

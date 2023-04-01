@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../App";
 
-import userImg from '../../user.png';
+import defaultProfilePic from '../../default.png';
 
 // Supabase
 import { createClient } from "@supabase/supabase-js";
@@ -12,11 +12,11 @@ function Header({ sendMessage }) {
     const session = useContext(UserContext);
 
     const handleSignOut = () => {
-        sendMessage('system', session.user.name + " left");
+        sendMessage(null, session.user.name + " left", true);
         session.updateContext(undefined,)
     }
 
-    const uploadImage = async (e) => {
+    /* const uploadImage = async (e) => {
         
         if (e.target.files) {
             let file = e.target.files[0];
@@ -57,6 +57,65 @@ function Header({ sendMessage }) {
                 }
             }
         
+    } */
+
+    const updateProfilePic = async (e) => {
+        if (e.target.files) {
+            let file = e.target.files[0];
+
+            if (session.user.profile_pic === null) {
+                const { data, error } = await supabase.storage
+                .from('profile-pictures')
+                .upload('public/' + session.user.user_id, file, {
+                    cacheControl: '3600',
+                    upsert: false
+                })
+
+                if (data) {
+                    const { data, error } = supabase
+                    .storage
+                    .from('profile-pictures')
+                    .getPublicUrl('public/' + session.user.user_id);
+
+                    if (data) {
+                        console.log(data.publicUrl);
+
+                        const { error } = await supabase
+                            .from('users')
+                            .update({ profile_pic: data.publicUrl})
+                            .eq('user_id', session.user.user_id);
+
+                        if (error) console.log(error);
+                    }
+                }
+            } else {
+                const { data, error } = await supabase.storage
+                .from('profile-pictures')
+                .update('public/' + session.user.user_id, file, {
+                    cacheControl: '3600',
+                    upsert: true,
+                });
+
+                if (data) {
+                    const { data, error } = supabase
+                        .storage
+                        .from('profile-pictures')
+                        .getPublicUrl('public/' + session.user.user_id);
+
+                    if (data) {
+                        console.log(data.publicUrl);
+
+                        const { error } = await supabase
+                            .from('users')
+                            .update({ profile_pic: data.publicUrl})
+                            .eq('user_id', session.user.user_id);
+                    }
+                }
+            }
+
+        } else {
+            console.log('no files')
+        }
     }
 
     return (
@@ -74,7 +133,7 @@ function Header({ sendMessage }) {
             borderColor: '#282828',
             borderStyle: 'solid',
         }}>
-            <input type="file" name="image-upload" style={{ opacity: '0', position: 'absolute'}} onChange={uploadImage} multiple={false} accept="image/*"/>
+            <input type="file" name="image-upload" style={{ opacity: '0', position: 'absolute'}} onChange={updateProfilePic} multiple={false} accept="image/*"/>
             <div for="image-upload" className="left-header-content" style={{ display: 'flex', alignItems: 'center', margin: '0 10px'}}>
                 <div className="profile-pic" style={{
                     width: 40,
@@ -85,8 +144,8 @@ function Header({ sendMessage }) {
                     alignItems: 'center',
                     justifyContent: 'center',
                     overflow: 'hidden',
-                }} onClick={uploadImage}>
-                    <img src={session.user.profile_pic} width="100%"/>
+                }} onClick={null}>
+                    <img src={session.user.profile_pic != null ? session.user.profile_pic : defaultProfilePic} width="100%"/>
                 </div>
 
                 <h2 style={{ margin: '0px 10px', color: 'white', fontSize: '1.2rem', lineHeight: '2.25rem'}}>{session.user.name} (You)</h2>

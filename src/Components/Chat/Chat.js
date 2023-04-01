@@ -20,39 +20,72 @@ function Chat() {
     const session = useContext(UserContext);
 
     const [messages, setMessages] = useState([]);
+    const [members, setMembers] = useState([]);
+
+    async function getMembers() {
+        const { data } = await supabase.from("users").select();
+        setMembers(data);
+    }
 
     async function getMessages() {
         const { data } = await supabase.from("messages").select().order('created_at', { ascending: true });
         setMessages(data.reverse());
     }
 
-    async function sendMessage(owner, message) {
-        const { error } = await supabase.from('messages').insert({ owner: owner, body: message });
+    async function sendMessage(ownerId, message, isSystemMsg) {
+        
+        const { error } = await supabase.from('messages').insert({
+            owner_id: ownerId === null ? null : ownerId,
+            body: message,
+            system_msg: isSystemMsg
+        });
+
         getMessages();
+
         if (error) {
             console.log(error);
         }
     }
 
     supabase
-        .channel('messages_channel')
-        .on(
-            'postgres_changes',
-            {
-                event: '*',
-                schema: 'public',
-                table: 'messages'
-            },
-            (payload) => {
-                getMessages();
+    .channel('messages_channel')
+    .on(
+        'postgres_changes',
+        {
+            event: '*',
+            schema: 'public',
+            table: 'messages'
+        },
+        (payload) => {
+            getMessages();
+        }
+    )
+    .subscribe();
+
+    supabase
+    .channel('members_channel')
+    .on(
+        'postgres_changes',
+        {
+            event: '*',
+            schema: 'public',
+            table: 'users'
+        },
+        (payload) => {
+            getMembers();
+            console.log('updated members!', payload);
+            if (payload.new.user_id === session.user.user_id) {
+                session.updateContext(payload.new);
             }
-        )
-        .subscribe();
+        }
+    )
+    .subscribe();   
 
     useEffect(() => {
         if (isMounted.current) {
+            getMembers();
             getMessages();
-            sendMessage('system', session.user.name + ' joined');
+            sendMessage(null, session.user.name + ' joined', true);
         } else {
             isMounted.current = true;
         }
@@ -69,7 +102,7 @@ function Chat() {
     return (
         <div className="chat-wrapper">
             <Header sendMessage={sendMessage}/>
-            <Messages messages={messages}/>
+            <Messages messages={messages} members={members}/>
             <Footer sendMessage={sendMessage}/>
         </div>
     )
