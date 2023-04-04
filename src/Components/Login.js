@@ -12,19 +12,19 @@ function Login() {
     const session = useContext(UserContext);
 
     supabase
-        .channel('users_channel')
-        .on(
-            'postgres_changes',
-            {
-                event: 'INSERT',
-                schema: 'public',
-                table: 'users'
-            },
-            (payload) => {
-                console.log(payload);
-            }
-        )
-        .subscribe();
+    .channel('members_channel')
+    .on(
+        'postgres_changes',
+        {
+            event: '*',
+            schema: 'public',
+            table: 'users'
+        },
+        (payload) => {
+            session.updateContext(payload.new);
+        }
+    )
+    .subscribe();
     
     const [value, setValue] = useState('');
 

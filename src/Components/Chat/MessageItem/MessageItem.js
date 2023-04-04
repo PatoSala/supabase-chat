@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "./MessageItem.css";
 import defaultProfilePic from '../../../default.png';
 
@@ -16,9 +16,10 @@ function MessageItem({ props }) {
     const msg = props.msg;
     const index = props.index;
     const array = props.array;
-    const owner = props.owner;
+    const owner = props.owner !== undefined ? props.owner : { name: "NN", profile_pic: null };
     const prevMsg = props.prevMsg;
     const nextMsg = props.nextMsg;
+
 
     const systemMessage = () => {
         return (

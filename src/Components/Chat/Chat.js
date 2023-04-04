@@ -76,6 +76,7 @@ function Chat() {
             console.log('updated members!', payload);
             if (payload.new.user_id === session.user.user_id) {
                 session.updateContext(payload.new);
+                console.log(payload.new.profile_pic, session.user.profile_pic)
             }
         }
     )

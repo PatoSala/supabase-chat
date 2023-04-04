@@ -67,7 +67,7 @@ function Header({ sendMessage }) {
                 const { data, error } = await supabase.storage
                 .from('profile-pictures')
                 .upload('public/' + session.user.user_id, file, {
-                    cacheControl: '3600',
+                    cacheControl: '0',
                     upsert: false
                 })
 
@@ -92,7 +92,7 @@ function Header({ sendMessage }) {
                 const { data, error } = await supabase.storage
                 .from('profile-pictures')
                 .update('public/' + session.user.user_id, file, {
-                    cacheControl: '3600',
+                    cacheControl: '0',
                     upsert: true,
                 });
 
@@ -133,7 +133,7 @@ function Header({ sendMessage }) {
             borderColor: '#282828',
             borderStyle: 'solid',
         }}>
-            <input type="file" name="image-upload" style={{ opacity: '0', position: 'absolute'}} onChange={updateProfilePic} multiple={false} accept="image/*"/>
+            
             <div for="image-upload" className="left-header-content" style={{ display: 'flex', alignItems: 'center', margin: '0 10px'}}>
                 <div className="profile-pic" style={{
                     width: 40,
@@ -145,6 +145,7 @@ function Header({ sendMessage }) {
                     justifyContent: 'center',
                     overflow: 'hidden',
                 }} onClick={null}>
+                    <input type="file" name="image-upload" style={{ opacity: '0', position: 'absolute', width: 40, height: 40 }} onChange={updateProfilePic} multiple={false} accept="image/*"/>
                     <img src={session.user.profile_pic != null ? session.user.profile_pic : defaultProfilePic} width="100%"/>
                 </div>
 
