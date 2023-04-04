@@ -23,7 +23,7 @@ function MessageItem({ props }) {
 
     const systemMessage = () => {
         return (
-            <div className="msg-item" style={{ alignItems: 'center', justifyContent: 'center', margin: '5px, 0px' }}>
+            <div className="msg-item" style={{ alignItems: 'center', justifyContent: 'center', marginTop: 5, marginBottom: 5}}>
                 <p 
                     className="msg-body" 
                     style={{

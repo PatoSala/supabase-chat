@@ -18,7 +18,7 @@ function Messages({ messages, members }) {
                 <p style={{ color: 'white' }}>Empty</p>
             </div>
         ) : (
-            <div className="messages-container" style={{ dispay: 'flex', flexDirection: 'column-reverse', flex: 1, paddingBottom: 60, paddingTop: 60 }}>
+            <div className="messages-container">
                 {
                     messages.map((msg, index, array) => {
                         let owner = members.find(member => member.user_id === msg.owner_id);

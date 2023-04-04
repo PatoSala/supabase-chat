@@ -12,6 +12,10 @@ body {
   background: #1c1c1c;
 }
 
+/* .App {
+  overflow: hidden;
+} */
+
 button {
   font-family: Almarai, sans-serif;
 }
@@ -19,11 +23,6 @@ button {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-.messages-container {
-  display: flex;
-  overflow-y: scroll;
 }
 
 input {

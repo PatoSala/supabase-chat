@@ -83,13 +83,9 @@ function Chat() {
     .subscribe();   
 
     useEffect(() => {
-        if (isMounted.current) {
-            getMembers();
-            getMessages();
-            sendMessage(null, session.user.name + ' joined', true);
-        } else {
-            isMounted.current = true;
-        }
+        getMembers();
+        getMessages();
+        sendMessage(null, session.user.name + ' joined', true);
     }, []);
 
     /* const channel = supabase.channel('test');
