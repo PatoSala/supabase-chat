@@ -1,3 +1,3 @@
-# Supachat ✉: realtime chat powered bu supabase
+# Supachat ✉: realtime chat powered by supabase
 
 https://patosala.github.io/supabase-chat/
